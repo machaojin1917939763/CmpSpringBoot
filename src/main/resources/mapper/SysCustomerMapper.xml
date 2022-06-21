@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.machaojin.mapper.SysCustomerMapper">
+
+    <resultMap id="BaseResultMap" type="com.machaojin.domain.SysCustomer">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="tel" column="tel" jdbcType="VARCHAR"/>
+            <result property="carno" column="carno" jdbcType="VARCHAR"/>
+            <result property="cartype" column="cartype" jdbcType="VARCHAR"/>
+            <result property="createdate" column="createdate" jdbcType="DATE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,tel,
+        carno,cartype,createdate
+    </sql>
+</mapper>

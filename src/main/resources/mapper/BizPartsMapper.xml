@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.machaojin.mapper.BizPartsMapper">
+
+    <resultMap id="BaseResultMap" type="com.machaojin.domain.BizParts">
+            <id property="partsid" column="PartsId" jdbcType="INTEGER"/>
+            <result property="partsname" column="PartsName" jdbcType="VARCHAR"/>
+            <result property="partsmodel" column="PartsModel" jdbcType="VARCHAR"/>
+            <result property="partsloc" column="PartsLoc" jdbcType="VARCHAR"/>
+            <result property="partsprodate" column="PartsProDate" jdbcType="DATE"/>
+            <result property="partsremark" column="PartsRemark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="PartsBill" type="com.machaojin.domain.BizParts">
+<!--        billcount-->
+        <result property="partsid" column="billcount"/>
+<!--       name -->
+        <result property="partsname" column="name"/>
+<!--        type-->
+        <result property="partsmodel" column="type"/>
+<!--        partsname-->
+        <result property="partsloc" column="partsname"/>
+<!--        billtime-->
+        <result property="partsprodate" column="billtime"/>
+<!--        billuser-->
+        <result property="partsremark" column="billuser"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        PartsId,PartsName,PartsModel,
+        PartsLoc,PartsProDate,PartsRemark
+    </sql>
+    <select id="getPartsInOutList" resultType="com.machaojin.domain.BizParts" resultMap="PartsBill">
+        SELECT name,type,partsname,billcount,billtime,billuser FROM sys_code c,(SELECT a.PartsName,b.* FROM biz_parts a,biz_partsrepbill b WHERE a.partsid = b.partsid) d
+        WHERE c.code = d.billtype AND type = billflag
+          <if test="parts.partsname != null and parts.partsname != ''">
+            and partsname like #{parts.partsname}
+          </if>
+         <if test="parts.partsmodel != null and parts.partsmodel != ''">
+             and type like #{parts.partsmodel}
+        </if>
+        <if test="parts.partsname != null and parts.partsname != ''">
+           and name like  #{parts.partsloc}
+        </if>
+        <if test="parts.partsremark != null and parts.partsremark != ''">
+            and billuser like #{parts.partsremark}
+        </if>
+
+    </select>
+</mapper>
