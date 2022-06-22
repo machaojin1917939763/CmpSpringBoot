@@ -15,7 +15,6 @@ public interface BizPartsMapper extends BaseMapper<BizParts> {
 
     /**
      * 分页查询配件库流水
-     *
      * @param page  分页
      * @param parts 条件构造器
      * @return 返回分页查询数据
