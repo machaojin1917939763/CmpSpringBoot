@@ -18,9 +18,7 @@ public class BizProduct implements Serializable {
     @TableId(type = IdType.AUTO)
     private Integer productid;
 
-    /**
-     * 
-     */
+
     private String productcode;
 
     /**
