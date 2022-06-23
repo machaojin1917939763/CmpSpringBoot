@@ -32,9 +32,11 @@
         PartsLoc,PartsProDate,PartsRemark
     </sql>
     <select id="getPartsInOutList" resultType="com.machaojin.domain.BizParts" resultMap="PartsBill">
-        SELECT name,type,partsname,billcount,billtime,billuser FROM sys_code c,(SELECT a.PartsName,b.* FROM biz_parts a,biz_partsrepbill b WHERE a.partsid = b.partsid) d
-        WHERE c.code = d.billtype AND type = billflag
-          <if test="parts.partsname != null and parts.partsname != ''">
+        select b.*,c.name flagname,c2.name typename,p.partsname,e.name  from biz_partsrepbill b
+        left outer join sys_code c on b.billflag = c.code left outer join sys_code c2 on b.billtype = c2.code
+        left outer join biz_parts p on b.partsid = p.partsid
+        left outer join sys_emp e on b.billuser = e.id where 1=1
+        <if test="parts.partsname != null and parts.partsname != ''">
             and partsname like #{parts.partsname}
           </if>
          <if test="parts.partsmodel != null and parts.partsmodel != ''">
