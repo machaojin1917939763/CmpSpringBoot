@@ -3,6 +3,7 @@ package com.machaojin.mapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.machaojin.domain.BizParts;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -11,6 +12,7 @@ import org.apache.ibatis.annotations.Param;
 * @createDate 2022-06-22 16:02:18
 * @Entity com.machaojin.domain.BizParts
 */
+@Mapper
 public interface BizPartsMapper extends BaseMapper<BizParts> {
 
     /**
